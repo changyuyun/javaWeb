@@ -3,4 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <!--配置Servlet start-->
+    <!--<servlet>
+        <servlet-name>demo01</servlet-name>
+        <servlet-class>cn.ityun.web.servlet.ServletDemo01</servlet-class>
+        &lt;!&ndash;
+        负数：第一次访问时创建
+        整数（0或正整数）：服务器启动时创建
+        &ndash;&gt;
+        <load-on-startup>5</load-on-startup>
+    </servlet>-->
+    
+    <!--<servlet-mapping>
+        <servlet-name>demo01</servlet-name>
+        <url-pattern>/demo01</url-pattern>
+    </servlet-mapping>-->
+    <!--配置Servlet end-->
+
 </web-app>
