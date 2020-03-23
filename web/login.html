@@ -8,7 +8,17 @@
 <form action="/loginS" method="post">
     <input type="text" name="name"><br>
     <input type="password" name="pwd"><br>
+    <img src="/CheckCodeDemo01" id="code" ><br>
     <input type="submit" value="submit">
 </form>
+<script>
+    window.onload = function () {
+        var code = document.getElementById("code");
+        code.onclick = function () {
+            var date = new Date().getTime();
+            code.src = "/CheckCodeDemo01?s="+date;
+        }
+    }
+</script>
 </body>
 </html>
