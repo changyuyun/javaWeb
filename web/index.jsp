@@ -11,6 +11,17 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <%
+    System.out.println("hello jsp");
+    String contextPath = request.getContextPath();
+    out.println(contextPath);
+  %>
+  <%
+    out.println("hello");
+  %>
+  <%
+    response.getWriter().println("response");
+  %>
+
   </body>
 </html>
