@@ -1,27 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chang
-  Date: 2020/3/18
-  Time: 22:50
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" buffer="16kb" %>
+<%@include file="top.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <title>$Title$</title>
   </head>
   <body>
-  <%
-    System.out.println("hello jsp");
-    String contextPath = request.getContextPath();
-    out.println(contextPath);
-  %>
-  <%
-    out.println("hello");
-  %>
-  <%
-    response.getWriter().println("response");
-  %>
+    <h2>main content</h2>
 
+    <%--
+    <%
+      System.out.println("hello.....");
+    %>
+    --%>
+  <%--
+  内置对象：
+  pageContext,
+  request,
+  session,
+  application,
+  response,
+  page,
+  out,
+  config,
+  exception
+  --%>
   </body>
 </html>
