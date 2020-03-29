@@ -11,15 +11,7 @@
     <title>home</title>
 </head>
 <body>
-<%
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null && cookies.length > 0) {
-        for (Cookie cookie :cookies) {
-            String name = cookie.getName();
-            String value = cookie.getValue();
-            out.println(name +"==="+ value);
-        }
-    }
-%>
+<h3>登陆成功</h3>
+<a href="${pageContext.request.contextPath}/UserListServlet">管理列表</a>
 </body>
 </html>

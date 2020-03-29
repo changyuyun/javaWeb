@@ -1,9 +1,12 @@
 package cn.ityun.web.dao;
 
 import cn.ityun.web.domain.User;
+import cn.ityun.web.domain.User3;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import cn.ityun.web.util.JDBCUtils2;
+
+import java.util.List;
 
 /**
  * 操作表
@@ -32,5 +35,16 @@ public class UserDao {
             //e.printStackTrace();
             return null;
         }
+    }
+
+    public void add(User3 user) {
+        String sql = "insert into user values (null,null,null,?,?,?,?)";
+        template.update(sql, user.getUsername(), user.getEmail(), user.getBirthday(), user.getSex());
+    }
+
+    public List<User3> findAll() {
+        String sql = "select id, username,email,birthday,sex from user order by id desc";
+        List<User3> list = template.query(sql, new BeanPropertyRowMapper<User3>(User3.class));
+        return list;
     }
 }
