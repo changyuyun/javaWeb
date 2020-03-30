@@ -102,13 +102,13 @@
             </tr>
             <c:forEach items="${users}" var="user" varStatus="s">
                 <tr>
-                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox" name="check" value="${user.getId()}"></td>
                     <td>${user.getId()}</td>
                     <td>${user.getUsername()}</td>
                     <td>${user.getEmail()}</td>
                     <td>${user.getSex()}</td>
                     <td>${user.getBirthday()}</td>
-                    <td><button class="actbutton">delete</button></td>
+                    <td><button class="actbutton" data-id="${user.getId()}" onclick="del(this)">delete</button></td>
                 </tr>
             </c:forEach>
         </table>
@@ -126,6 +126,25 @@
         </ul>
     </div>
 </div>
-<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+<script>
+    function del(_this) {
+        var id = $(_this).attr('data-id');
+        if (id == '' || id == undefined) {
+            alert('param error');
+            return false;
+        }
+        $.ajax({
+            url:"${pageContext.request.contextPath}/DelUserServlet",
+            type:"post",
+            data:{id:id},
+            dataType:"json",
+            success:function (res) {
+                console.log(res.code)
+            }
+
+        });
+    }
+</script>
 </body>
 </html>

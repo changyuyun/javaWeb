@@ -19,4 +19,10 @@ public class UserServiceImpl implements UserService {
         List<User3> list = userDao.findAll();
         return list;
     }
+
+    @Override
+    public int delUser(int id) {
+        UserDao userDao = new UserDao();
+        return userDao.del(id);
+    }
 }

@@ -47,4 +47,9 @@ public class UserDao {
         List<User3> list = template.query(sql, new BeanPropertyRowMapper<User3>(User3.class));
         return list;
     }
+
+    public int del(int id) {
+        String sql = "delete from user where id=?";
+        return template.update(sql, id);
+    }
 }
