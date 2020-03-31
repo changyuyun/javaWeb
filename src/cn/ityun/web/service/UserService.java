@@ -9,7 +9,11 @@ public interface UserService {
 
     List<User3> findAll();
 
+    List<User3> findOne(int id);
+
     int delUser(int id);
 
     int delUserSome(String ids);
+
+    int updateUser(User3 user, int id);
 }

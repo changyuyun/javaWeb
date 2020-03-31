@@ -21,6 +21,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User3> findOne(int id) {
+        UserDao userDao = new UserDao();
+        List<User3> list = userDao.findOne(id);
+        return list;
+    }
+
+    @Override
     public int delUser(int id) {
         UserDao userDao = new UserDao();
         return userDao.del(id);
@@ -30,5 +37,11 @@ public class UserServiceImpl implements UserService {
     public int delUserSome(String ids) {
         UserDao userDao = new UserDao();
         return userDao.delSome(ids);
+    }
+
+    @Override
+    public int updateUser(User3 user, int id) {
+        UserDao userDao = new UserDao();
+        return userDao.update(user, id);
     }
 }

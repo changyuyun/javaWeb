@@ -48,14 +48,24 @@ public class UserDao {
         return list;
     }
 
+    public List<User3> findOne(int id) {
+        String sql = "select id, username,email,birthday,sex from user where id=? limit 1";
+        List<User3> list = template.query(sql, new BeanPropertyRowMapper<User3>(User3.class), id);
+        return list;
+    }
+
     public int del(int id) {
         String sql = "delete from user where id=?";
         return template.update(sql, id);
     }
 
     public int delSome(String ids) {
-        // System.out.println(ids);
         String sql = "delete from user where id in ("+ids+")";
         return template.update(sql);
+    }
+
+    public int update(User3 user, int id) {
+        String sql = "update user set username=?,email=?,birthday=?,sex=? where id=?";
+        return template.update(sql, user.getUsername(), user.getEmail(), user.getBirthday(), user.getSex(), id);
     }
 }
