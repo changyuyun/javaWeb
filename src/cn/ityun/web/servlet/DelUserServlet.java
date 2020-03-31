@@ -70,7 +70,6 @@ public class DelUserServlet extends HttpServlet {
         } else {
             UserServiceImpl userService = new UserServiceImpl();
             int ret = userService.delUserSome(ids);
-            System.out.println(ret);
             if (ret > 0) {
                 JsonMessage success = new JsonMessage(0, "success");
                 message = gson.toJson(success);
@@ -79,7 +78,6 @@ public class DelUserServlet extends HttpServlet {
                 message = gson.toJson(failed);
             }
         }
-        System.out.println(Arrays.toString(idsArr));
         try {
             response.getWriter().println(message);
         } catch (IOException e) {
