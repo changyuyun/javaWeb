@@ -52,4 +52,10 @@ public class UserDao {
         String sql = "delete from user where id=?";
         return template.update(sql, id);
     }
+
+    public int delSome(String ids) {
+        // System.out.println(ids);
+        String sql = "delete from user where id in ("+ids+")";
+        return template.update(sql);
+    }
 }

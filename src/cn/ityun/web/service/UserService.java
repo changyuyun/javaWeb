@@ -10,4 +10,6 @@ public interface UserService {
     List<User3> findAll();
 
     int delUser(int id);
+
+    int delUserSome(String ids);
 }

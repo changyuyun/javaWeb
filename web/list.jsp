@@ -86,13 +86,13 @@
     </div>
     <div class="tool-box">
         <button class="actbutton" onclick="location.href='${pageContext.request.contextPath}/home.jsp'">home</button>
-        <button class="actbutton">delete some</button>
+        <button class="actbutton" onclick="delSome()">delete some</button>
         <button class="actbutton" onclick="location.href='${pageContext.request.contextPath}/add.jsp'">add user</button>
     </div>
     <div>
         <table class="gridtable">
             <tr>
-                <th><input type="checkbox"></th>
+                <th></th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -137,10 +137,43 @@
         $.ajax({
             url:"${pageContext.request.contextPath}/DelUserServlet",
             type:"post",
-            data:{id:id},
+            data:{id:id, actType:"one"},
             dataType:"json",
             success:function (res) {
                 console.log(res.code)
+                if (res.code == 0) {
+                    window.location.reload();
+                } else {
+                    alert(res.message);
+                }
+            }
+
+        });
+    }
+
+    function delSome() {
+        var check_value = [];
+        $('input[name="check"]:checked').each(function(){
+            check_value.push($(this).val());
+        });
+        console.log(check_value.length);
+        if (check_value.length == 0) {
+            alert("not checked any!");
+            return false;
+        }
+        var ids = check_value.join(",");
+        $.ajax({
+            url:"${pageContext.request.contextPath}/DelUserServlet",
+            type:"post",
+            data:{ids:ids, actType:"some"},
+            dataType:"json",
+            success:function (res) {
+                console.log(res.code);
+                if (res.code == 0) {
+                    window.location.reload();
+                } else {
+                    alert(res.message);
+                }
             }
 
         });

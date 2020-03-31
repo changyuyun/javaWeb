@@ -25,4 +25,10 @@ public class UserServiceImpl implements UserService {
         UserDao userDao = new UserDao();
         return userDao.del(id);
     }
+
+    @Override
+    public int delUserSome(String ids) {
+        UserDao userDao = new UserDao();
+        return userDao.delSome(ids);
+    }
 }
