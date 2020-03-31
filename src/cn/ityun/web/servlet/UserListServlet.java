@@ -37,6 +37,7 @@ public class UserListServlet extends HttpServlet {
         pageList.setPage(page);
         pageList.setTotalRows(count);
         pageList.setPages(pages);
+        pageList.setPageSize(pageSize);
         pageList.setList(list);
         System.out.println(pageList);
         request.setAttribute("list", pageList);

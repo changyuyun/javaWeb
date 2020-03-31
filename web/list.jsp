@@ -62,6 +62,9 @@
             display: inline;
             line-height: 40px;
         }
+        .current {
+            color: aqua;
+        }
         a {
             text-decoration: none;
             color: green;
@@ -117,15 +120,15 @@
         </table>
     </div>
     <div id="list_content">
-        当前页码：${list.getPage()}&nbsp;&nbsp;&nbsp;&nbsp;总页数：${list.getPages()}&nbsp;&nbsp;&nbsp;&nbsp;总数据量：${list.getTotalRows()}
+        当前页码：${list.getPage()}&nbsp;&nbsp;&nbsp;&nbsp;总页数：${list.getPages()}&nbsp;&nbsp;&nbsp;&nbsp;总数据量：${list.getTotalRows()} &nbsp;&nbsp;&nbsp;&nbsp;每页条数：${list.getPageSize()}
     </div>
     <div id="page">
-        <ul>
+        <ul id="page-container">
             <li><a href="#"> <<< </a></li>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
+            <li><a class="current" href="#">4</a></li>
             <li><a href="#">5</a></li>
             <li><a href="#">6</a></li>
             <li><a href="#"> >>> </a></li>
@@ -134,6 +137,20 @@
 </div>
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script>
+    window.onload = function () {
+        var current_page = ${list.getPage()};
+        var total_page = ${list.getPages()};
+        var page_size = ${list.getPageSize()}
+        var page_html = "";
+        for (var i = 1; i <= total_page; i++) {
+            if (current_page == i) {
+                page_html += '<li><a class="current" href="${pageContext.request.contextPath}/UserListServlet?page='+i+'&pageSize='+page_size+'">'+i+'</a></li>&nbsp;&nbsp;';
+            } else {
+                page_html += '<li><a href="${pageContext.request.contextPath}/UserListServlet?page='+i+'&pageSize='+page_size+'">'+i+'</a></li>&nbsp;&nbsp;';
+            }
+        }
+        $("#page-container").html(page_html);
+    };
     function del(_this) {
         var id = $(_this).attr('data-id');
         if (id == '' || id == undefined) {

@@ -10,6 +10,7 @@ public class PageListUtils {
     private int page;
     private int totalRows;
     private int pages;
+    private int pageSize;
     private List list = new ArrayList();
 
     public int getPage() {
@@ -18,6 +19,25 @@ public class PageListUtils {
 
     public void setPage(int page) {
         this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public String toString() {
+        return "PageListUtils{" +
+                "page=" + page +
+                ", totalRows=" + totalRows +
+                ", pages=" + pages +
+                ", pageSize=" + pageSize +
+                ", list=" + list +
+                '}';
     }
 
     public int getTotalRows() {
@@ -44,13 +64,4 @@ public class PageListUtils {
         this.list = list;
     }
 
-    @Override
-    public String toString() {
-        return "PageList{" +
-                "page=" + page +
-                ", totalRows=" + totalRows +
-                ", pages=" + pages +
-                ", list=" + list +
-                '}';
-    }
 }
