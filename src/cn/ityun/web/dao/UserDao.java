@@ -5,6 +5,7 @@ import cn.ityun.web.domain.User3;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import cn.ityun.web.util.JDBCUtils2;
+import org.springframework.jdbc.core.RowCountCallbackHandler;
 
 import java.util.List;
 
@@ -67,5 +68,20 @@ public class UserDao {
     public int update(User3 user, int id) {
         String sql = "update user set username=?,email=?,birthday=?,sex=? where id=?";
         return template.update(sql, user.getUsername(), user.getEmail(), user.getBirthday(), user.getSex(), id);
+    }
+
+    public int count() {
+        String sql = "select* from user";
+        RowCountCallbackHandler countCallback = new RowCountCallbackHandler();
+        template.query(sql, countCallback);
+        int count = countCallback.getRowCount();
+        return count;
+    }
+
+    public List<User3> findAllByPage(int page, int pageSize) {
+        int starter = (page-1)*pageSize;
+        String sql = "select id, username,email,birthday,sex from user limit " + starter + " , "+pageSize;
+        List<User3> list = template.query(sql, new BeanPropertyRowMapper<User3>(User3.class));
+        return list;
     }
 }

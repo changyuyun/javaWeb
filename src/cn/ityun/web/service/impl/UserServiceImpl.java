@@ -44,4 +44,16 @@ public class UserServiceImpl implements UserService {
         UserDao userDao = new UserDao();
         return userDao.update(user, id);
     }
+
+    @Override
+    public int countAll() {
+        UserDao userDao = new UserDao();
+        return userDao.count();
+    }
+
+    @Override
+    public List<User3> findAllByPage(int page, int pageSize) {
+        UserDao userDao = new UserDao();
+        return userDao.findAllByPage(page, pageSize);
+    }
 }

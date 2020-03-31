@@ -100,7 +100,7 @@
                 <th>Birthday</th>
                 <th>ACTION</th>
             </tr>
-            <c:forEach items="${users}" var="user" varStatus="s">
+            <c:forEach items="${list.getList()}" var="user" varStatus="s">
                 <tr>
                     <td><input type="checkbox" name="check" value="${user.getId()}"></td>
                     <td>${user.getId()}</td>
@@ -115,6 +115,9 @@
                 </tr>
             </c:forEach>
         </table>
+    </div>
+    <div id="list_content">
+        当前页码：${list.getPage()}&nbsp;&nbsp;&nbsp;&nbsp;总页数：${list.getPages()}&nbsp;&nbsp;&nbsp;&nbsp;总数据量：${list.getTotalRows()}
     </div>
     <div id="page">
         <ul>

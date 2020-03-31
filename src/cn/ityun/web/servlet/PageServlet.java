@@ -13,13 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/UserListServlet")
-public class UserListServlet extends HttpServlet {
+//测试分页
+@WebServlet(urlPatterns = "/PageServlet")
+public class PageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*UserServiceImpl userService = new UserServiceImpl();
-        List<User3> users = userService.findAll();
-        request.setAttribute("users", users);*/
-        //TODO:实现分页
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = request.getParameter("page");
         String pageSize = request.getParameter("pageSize");
         Integer realPage = 1;
@@ -47,11 +48,5 @@ public class UserListServlet extends HttpServlet {
         pageList.setPages(pages);
         pageList.setList(list);
         System.out.println(pageList);
-        request.setAttribute("list", pageList);
-        request.getRequestDispatcher("/list.jsp").forward(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request, response);
     }
 }

@@ -16,4 +16,8 @@ public interface UserService {
     int delUserSome(String ids);
 
     int updateUser(User3 user, int id);
+
+    int countAll();
+
+    List<User3> findAllByPage(int page, int pageSize);
 }
