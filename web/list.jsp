@@ -108,7 +108,10 @@
                     <td>${user.getEmail()}</td>
                     <td>${user.getSex()}</td>
                     <td>${user.getBirthday()}</td>
-                    <td><button class="actbutton" data-id="${user.getId()}" onclick="del(this)">delete</button></td>
+                    <td>
+                        <button class="actbutton" data-id="${user.getId()}" onclick="del(this)">delete</button>
+                        <button class="actbutton" data-id="${user.getId()}" onclick="location.href='${pageContext.request.contextPath}/EditUserServlet?id='+${user.getId()}">edit</button>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
