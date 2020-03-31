@@ -20,29 +20,21 @@ public class UserListServlet extends HttpServlet {
         List<User3> users = userService.findAll();
         request.setAttribute("users", users);*/
         //TODO:实现分页
-        String page = request.getParameter("page");
-        String pageSize = request.getParameter("pageSize");
-        Integer realPage = 1;
-        Integer realPageSize = 10;
-        if (page != null && ParameterUtils.isNumber(page)) {
-            realPage = Integer.parseInt(page);
-        }
-        if (pageSize != null && ParameterUtils.isNumber(pageSize)) {
-            realPageSize = Integer.parseInt(pageSize);
-        }
+        Integer page = ParameterUtils.getInt(request, "page", 1);
+        Integer pageSize = ParameterUtils.getInt(request, "pageSize", 10);
         PageListUtils pageList = new PageListUtils();
         UserServiceImpl userService = new UserServiceImpl();
-        List<User3> list = userService.findAllByPage(realPage, realPageSize);
+        List<User3> list = userService.findAllByPage(page, pageSize);
 
         int count = userService.countAll();
 
         int pages = 0;
-        if (count % realPageSize == 0) {
-            pages = count/realPageSize;
+        if (count % pageSize == 0) {
+            pages = count/pageSize;
         } else {
-            pages = count/realPageSize + 1;
+            pages = count/pageSize + 1;
         }
-        pageList.setPage(realPage);
+        pageList.setPage(page);
         pageList.setTotalRows(count);
         pageList.setPages(pages);
         pageList.setList(list);
