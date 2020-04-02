@@ -1,13 +1,16 @@
 package cn.ityun.web.test;
 
 import cn.ityun.web.redis.ListOperator;
+import cn.ityun.web.redis.SetOperator;
 import cn.ityun.web.redis.StringOperator;
 import cn.ityun.web.util.JedisUtils;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class JedisTest {
     @Test
@@ -66,5 +69,22 @@ public class JedisTest {
     public void testGetList() {
         List<String> list = ListOperator.getList("list");
         System.out.println(list);
+    }
+    @Test
+    public void testSetSet() {
+        Set<String> set = new HashSet<>();
+        set.add("a");
+        set.add("c");
+        set.add("b");
+        long size = SetOperator.setSet("set", set);
+        System.out.println(size);
+    }
+    @Test
+    public void testGetSet() {
+        Set<String> set = SetOperator.getSet("set");
+        for (String s : set) {
+            System.out.println(s);
+        }
+        System.out.println(set);
     }
 }
