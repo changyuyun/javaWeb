@@ -1,5 +1,6 @@
 package cn.ityun.web.test;
 
+import cn.ityun.web.redis.HashOperator;
 import cn.ityun.web.redis.ListOperator;
 import cn.ityun.web.redis.SetOperator;
 import cn.ityun.web.redis.StringOperator;
@@ -7,10 +8,7 @@ import cn.ityun.web.util.JedisUtils;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class JedisTest {
     @Test
@@ -86,5 +84,28 @@ public class JedisTest {
             System.out.println(s);
         }
         System.out.println(set);
+    }
+    @Test
+    public void testHset() {
+        long hash = HashOperator.hset("hash", "1", "1s");
+        System.out.println(hash);
+    }
+    @Test
+    public void tsetHmset() {
+        Map<String, String> map = new HashMap<>();
+        map.put("2", "2s");
+        map.put("3", "3s");
+        map.put("4", "4s");
+        String hash = HashOperator.hmset("hash", map);
+        System.out.println(hash);
+    }
+    @Test
+    public void testHgetAll() {
+        Map<String, String> hash = HashOperator.hgetAll("hash");
+        Set<Map.Entry<String, String>> entries = hash.entrySet();
+        for (Map.Entry<String, String> entry : entries) {
+            System.out.println(entry.getKey()+"-----"+entry.getValue());
+        }
+        System.out.println(hash);
     }
 }
